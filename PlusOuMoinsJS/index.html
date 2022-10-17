@@ -4,7 +4,24 @@
   <meta charset="utf-8">
   <title>Plus ou Moins</title>
   <script src="plusOuMoins.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main>
+    <h1>Plus ou moins ?</h1>
+    <h3>Entrer un nombre entre 1 et 99</h3>
+    <p id="alert"></p>
+    <input type="number" id="num" name="num"
+          min="1" max="99" value="1"></input>
+    <input type="button" id="button" name="button" value="Valider"></input>
+    <input type="button" id="restart" name="restart" value="Recommencer"></input>
+    <p id="scoreperso"></p>
+    <div>
+      <h3>Hightscore</h3>
+      <div id="hightscore">
+
+      </div>
+    </div>
+  </main>
 </body>
 </html>
