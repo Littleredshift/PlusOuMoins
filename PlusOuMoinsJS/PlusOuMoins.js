@@ -18,4 +18,6 @@ while(nb != random){
 }
 
 alert("Bravo, la valeur a trouve etait "+nb+" vous l'avez trouver en "+count+" coup");
+
+let name = prompt("Veillez entrer votre nom");
     
