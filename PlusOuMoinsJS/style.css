@@ -1,0 +1,11 @@
+body{
+    display: flex;
+    text-align: center;
+    vertical-align: bottom;
+    flex-direction: column;
+}
+
+main{
+    width: 50%;
+    margin: auto;
+}
