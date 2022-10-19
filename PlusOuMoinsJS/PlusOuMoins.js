@@ -4,19 +4,21 @@ window.addEventListener('load', (event) => {
         return a.score - b.score;
     }
 
-    function displayHighScore(array){
+    function writeScore(array){
         let div = document.getElementById("hightscore");    
         div.innerHTML = "";
+        let place = 0;
         array.forEach(function(element){
+            place ++;
             let p = document.createElement("p");
-            p.innerHTML = element.name +" : "+element.score;
+            p.innerHTML = place+" : "+element.name +" - "+element.score;
             let div = document.getElementById("hightscore");
-            div.appendChild(p);
+            div.appendChild(p);   
         });
     }
 
     if(window.localStorage.getItem('higscores') !== null){
-        displayHighScore(JSON.parse(window.localStorage.getItem('higscores')))
+        writeScore(JSON.parse(window.localStorage.getItem('higscores')))
     }
 
     let random = Math.floor(Math.random() * 99) + 1; 
@@ -25,11 +27,18 @@ window.addEventListener('load', (event) => {
 
     let count = 0;
 
+    let inputText = document.getElementById("num");
+    inputText.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("button").click();
+        }
+    });
+
     let button = document.getElementById("button");
     button.onclick = (event) => {
         count ++;
         nb = parseInt(document.getElementById("num").value);
-        console.log(nb);
         if(nb > random){
             document.getElementById("alert").innerText  = "C'est moins";
         }else if(nb < random){
@@ -61,7 +70,8 @@ window.addEventListener('load', (event) => {
 
             window.localStorage.setItem('higscores', JSON.stringify(highscores));
 
-            displayHighScore(highscores);
+            writeScore(highscores);
+            
         }
     };
 
@@ -75,6 +85,53 @@ window.addEventListener('load', (event) => {
         document.getElementById("alert").innerText  = "";
         document.getElementById("scoreperso").innerText  = "";
         document.getElementById("num").value  = 1;
+    }
+
+    let hidScore = document.getElementById("displayScore");
+    hidScore.onclick = (event) => {
+        let stateHidden = document.getElementById("divHightscore").hidden;   
+        if(!stateHidden){
+            document.getElementById("divHightscore").hidden = true;  
+        }else{
+            document.getElementById("divHightscore").hidden = false;  
+        }
+    }
+
+    let resScore = document.getElementById("resetScore");
+    resScore.onclick = (event) => {
+        window.localStorage.removeItem('higscores');
+        let div = document.getElementById("hightscore");    
+        div.innerHTML = "";
+        let infName = document.getElementById("scoreSearch");
+        infName.innerHTML = "";
+    }
+
+    let inputSearch = document.getElementById("sName");
+    inputSearch.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("searchName").click();
+        }
+    });
+
+    let search = document.getElementById("searchName");
+    search.onclick = (event) => {
+        let index = 0;
+        let find = false;
+        let name = document.getElementById("sName").value; 
+        let highscores = JSON.parse(window.localStorage.getItem('higscores'));
+        highscores.forEach(function(element){
+            index ++;
+            if(name === element.name){
+                let infName = document.getElementById("scoreSearch");
+                infName.innerHTML = index+" : "+element.name +" - "+element.score;
+                find = true;
+            }
+        })
+        if(!find){
+            let infName = document.getElementById("scoreSearch");
+            infName.innerHTML = "Le nom rentrer n'est pas présent dans le classement";
+        }
     }
 
 });
