@@ -21,6 +21,8 @@ window.addEventListener('load', (event) => {
         writeScore(JSON.parse(window.localStorage.getItem('higscores')))
     }
 
+    let maxtry = 0;
+
     let random = Math.floor(Math.random() * 99) + 1; 
 
     let nb = 0;
@@ -39,7 +41,10 @@ window.addEventListener('load', (event) => {
     button.onclick = (event) => {
         count ++;
         nb = parseInt(document.getElementById("num").value);
-        if(nb > random){
+        if(nb !== random && count == maxtry){
+            document.getElementById("alert").innerText  = "C'est perdu. Vous avez attein le nombre d'essai maximum, le nombre a trouvé était "+random+".";
+            document.getElementById("button").disabled = true;
+        }else if(nb > random){
             document.getElementById("alert").innerText  = "C'est moins";
         }else if(nb < random){
             document.getElementById("alert").innerText  = "C'est plus";
@@ -77,8 +82,9 @@ window.addEventListener('load', (event) => {
 
     let res = document.getElementById("restart");
     res.onclick = (event) => {
+        document.getElementById("diff").style.display ="initial";  
+        document.getElementById("game").style.display = "none";
         random = Math.floor(Math.random() * 99) + 1; 
-        console.log(random);
         nb = 0;
         count = 0;
         document.getElementById("button").disabled = false;
@@ -132,6 +138,27 @@ window.addEventListener('load', (event) => {
             let infName = document.getElementById("scoreSearch");
             infName.innerHTML = "Le nom rentrer n'est pas présent dans le classement";
         }
+    }
+
+    let easy = document.getElementById("easy");
+    easy.onclick = ( event ) =>{
+        document.getElementById("diff").style.display ="none";  
+        document.getElementById("game").style.display = "initial";  
+        maxtry = 0;
+    }
+
+    let normal = document.getElementById("normal");
+    normal.onclick = ( event ) =>{
+        document.getElementById("diff").style.display ="none";  
+        document.getElementById("game").style.display = "initial";  
+        maxtry = 20;
+    }
+
+    let difficult = document.getElementById("difficult");
+    difficult.onclick = ( event ) =>{
+        document.getElementById("diff").style.display ="none";  
+        document.getElementById("game").style.display = "initial";  
+        maxtry = 5;
     }
 
 });
