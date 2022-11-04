@@ -9,22 +9,30 @@
 <body>
   <main>
     <h1>Plus ou moins ?</h1>
-    <h3>Entrer un nombre entre 1 et 99</h3>
-    <p id="alert"></p>
-    <input type="number" id="num" name="num"
-          min="1" max="99" value="1"></input>
-    <input type="button" id="button" name="button" value="Valider"></input>
-    <input type="button" id="restart" name="restart" value="Recommencer"></input>
-    <p id="scoreperso"></p>
-    <input type="text" id="sName" name="sName"></input>
-    <input type="button" id="searchName" name="searchName" value="Rechercher dans le classement"></input>
-    <p id="scoreSearch"></p>
-    <input type="button" id="displayScore" name="displayScore" value="Afficher le classement"></input>
-    <input type="button" id="resetScore" name="resetScore" value="Supprimer le classement"></input>
-    <div id="divHightscore" hidden>
-      <h3>Hightscore</h3>
-      <div id="hightscore">
+    <div id="diff">
+      <h3>Sélectionnez une difficulté</h3>
+      <input type="button" id="easy" name="easy" value="Facile [essais illimité]"></input>
+      <input type="button" id="normal" name="normal" value="Normal [20 essais]"></input>
+      <input type="button" id="difficult" name="difficult" value="Difficile[5 essais]"></input>
     </div>
+    <div id="game" hidden>
+      <h3>Entrer un nombre entre 1 et 99</h3>
+      <p id="alert"></p>
+      <input type="number" id="num" name="num"
+            min="1" max="99" value="1"></input>
+      <input type="button" id="button" name="button" value="Valider"></input>
+      <input type="button" id="restart" name="restart" value="Recommencer"></input>
+      <p id="scoreperso"></p>
+      <input type="text" id="sName" name="sName"></input>
+      <input type="button" id="searchName" name="searchName" value="Rechercher dans le classement"></input>
+      <p id="scoreSearch"></p>
+      <input type="button" id="displayScore" name="displayScore" value="Afficher le classement"></input>
+      <input type="button" id="resetScore" name="resetScore" value="Supprimer le classement"></input>
+      <div id="divHightscore" hidden>
+        <h3>Hightscore</h3>
+        <div id="hightscore">
+        </div>
+      </div>
     </div>
   </main>
 </body>
